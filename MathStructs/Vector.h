@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Matrix.h"
+#include "../MathExceptions/MathOutRangeException.h"
+
 #include <vector>
 
 namespace Math{
@@ -8,10 +10,12 @@ namespace Math{
 class Vector{
 public:
 
-    Vector( );
-    Vector( int dim );
-   /*Vector( const Vector& v );  // copy constructor   - он их сам создаст
-    Vector( Vector && v);       // move constructor */
+    Vector( ): v(0){};
+    Vector( size_t dim ) : v(dim) {};
+    /* 
+    Vector( const Vector& v );  // copy constructor   - он их сам создаст
+    Vector( Vector && v);       // move constructor 
+    */
     
     friend Vector operator + ( const Vector &v1, const Vector &v2 );
     friend Vector operator - ( const Vector &v1, const Vector &v2 );
@@ -40,7 +44,9 @@ public:
     //friend Vector nullVector();
 
 private:
+    bool isOutOfrange( size_t index ) const;
 
+private:
     std::vector<double> v;    // координаты
 };
 

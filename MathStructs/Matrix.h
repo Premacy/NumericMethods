@@ -14,9 +14,12 @@ public:
     friend Matrix operator + ( const Matrix &m1, const Matrix &m2 );
     friend Matrix operator - ( const Matrix &m1, const Matrix &m2 );
 
-    friend Matrix operator * ( const Matrix &m1, const Matrix &m2 );
-    
-    Vector multOnVector();
+    Vector multOnVector( const Vector &v );
+    Matrix multOnMatrix( const Matrix &m );
+
+    //double norm();
+
+    std::pair<size_t, size_t> dim() const;
 
 private:
     std::vector<std::vector<double>> mat;
